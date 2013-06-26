@@ -7,4 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 
+//= require admin/spree_variant_options
+
 //= require_tree .

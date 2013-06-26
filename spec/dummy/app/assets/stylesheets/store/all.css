@@ -5,5 +5,7 @@
  *
 
  *= require store/spree_variant_options
+
+ *= require_self
  *= require_tree .
 */
