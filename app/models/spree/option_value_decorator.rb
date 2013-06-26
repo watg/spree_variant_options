@@ -1,6 +1,7 @@
 Spree::OptionValue.class_eval do
 
   attr_accessible :image
+  attr_accessible :value
 
   default_scope order("#{quoted_table_name}.position")
 
@@ -19,4 +20,6 @@ Spree::OptionValue.class_eval do
 
   scope :for_product, lambda { |product| select("DISTINCT #{table_name}.*").where("spree_option_values_variants.variant_id IN (?)", product.variant_ids).joins(:variants)
   }
+  
+  
 end
