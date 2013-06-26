@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   # Development
   # s.add_development_dependency('spree_sample',     '~> 1.2.0')
   # s.add_development_dependency('dummier',          '~> 0.3')
+
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency('shoulda',          '~> 3.0')
