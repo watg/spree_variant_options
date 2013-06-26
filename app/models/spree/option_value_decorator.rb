@@ -1,7 +1,7 @@
 Spree::OptionValue.class_eval do
 
   attr_accessible :image
-  attr_accessible :value
+  attr_accessible :color_code
 
   default_scope order("#{quoted_table_name}.position")
 

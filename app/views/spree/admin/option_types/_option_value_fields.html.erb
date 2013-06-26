@@ -7,13 +7,13 @@
   <td class="presentation"><%= f.text_field :presentation %></td>
   
   <td class="preview"> 
-    <% if f.object.value %>
-      <span style="padding:10px;background-color:<%=f.object.value%>"> <%=f.object.value%></span>
+    <% if f.object.persisted?  and f.object.color_code?%>
+      <span style="padding:10px;background-color:<%=f.object.color_code%>"> <%=f.object.color_code%></span>
     <% end %>
   </td>
   <!-- <td><%#= image_tag f.object.image.url(:small) if f.object.has_image? %></td> -->
   <!-- <td><%#= f.file_field :image %></td> -->
-  <td class="value"><%= f.text_field :value %></td>
+  <td class="color_code"><%= f.text_field :color_code %></td>
   <td class="actions"><%= link_to_remove_fields Spree.t(:remove), f, :no_text => true %></td>
 </tr>
 
