@@ -175,7 +175,7 @@ function VariantOptions(params) {
   function toggle() {
     if (variant) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
-      $('#product-price .price').removeClass('unselected').text(variant.price);
+      $('#product-price .price').removeClass('unselected').text(variant.price).trigger('selected-variant-changed');
       if (variant.count > 0 || allow_backorders)
         $('#cart-form button[type=submit]').attr('disabled', false).fadeTo(100, 1);
       $('form[data-form-type="variant"] button[type=submit]').attr('disabled', false).fadeTo(100, 1);
