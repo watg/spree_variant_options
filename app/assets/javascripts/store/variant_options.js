@@ -164,9 +164,9 @@ function VariantOptions(params) {
         return to_f(a) < to_f(b) ? -1 : 1;
       });
       if (prices.length == 1) {
-        $('#product-price .price').html('<span class="price assumed">' + prices[0] + '</span>');
+        $('#product-price .price').html('<span class="price assumed">' + prices[0] + '</span>').trigger('variant-changed', {"price": [prices[0]]});
       } else {
-        $('#product-price .price').html('<span class="price from">' + prices[0] + '</span> - <span class="price to">' + prices[prices.length - 1] + '</span>');
+        $('#product-price .price').html('<span class="price from">' + prices[0] + '</span> - <span class="price to">' + prices[prices.length - 1] + '</span>').trigger('variant-changed', {"price": [ prices[0], prices[prices.length - 1]] });
       }
       return false;
     }
@@ -175,7 +175,7 @@ function VariantOptions(params) {
   function toggle() {
     if (variant) {
       $('#variant_id, form[data-form-type="variant"] input[name$="[variant_id]"]').val(variant.id);
-      $('#product-price .price').removeClass('unselected').text(variant.price);
+      $('#product-price .price').removeClass('unselected').text(variant.price).trigger('selected-variant-changed', {"price": [variant.price], "variant_id": variant.id});
       if (variant.count > 0 || allow_backorders)
         $('#cart-form button[type=submit]').attr('disabled', false).fadeTo(100, 1);
       $('form[data-form-type="variant"] button[type=submit]').attr('disabled', false).fadeTo(100, 1);
