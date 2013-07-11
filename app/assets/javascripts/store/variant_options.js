@@ -43,9 +43,14 @@ function VariantOptions(params) {
 
 
   function init() {
+      
+    // Hide Variant images first;
+    $('li.vtmb').hide();
+    
     divs = $('#product-variants .variant-options');
     disable(divs.find('a.option-value').addClass('locked'));
-    update();
+    update(); // This function sets parent 
+    console.log(parent);
     enable(parent.find('a.option-value'));
     toggle();
     $('.clear-option a.clear-button').hide().click(handle_clear);
@@ -63,6 +68,7 @@ function VariantOptions(params) {
 
   function update(i) {
     index = isNaN(i) ? index : i;
+    console.log('index ' + index);
     parent = $(divs.get(index));
     buttons = parent.find('a.option-value');
     parent.find('a.clear-button').hide();
@@ -118,6 +124,8 @@ function VariantOptions(params) {
   }
 
   function get_variant_objects(rels) {
+      console.log('get variant objects');
+      console.log(rels);
     var i, ids, obj, variants = {};
     if (typeof(rels) == 'string') { rels = [rels]; }
     var otid, ovid, opt, opv;
@@ -155,6 +163,8 @@ function VariantOptions(params) {
   function find_variant() {
     var selected = divs.find('a.selected');
     var variants = get_variant_objects(selected.get(0).rel);
+    console.log('inside find_variant:');
+    console.log(variants);
     if (selected.length == divs.length) {
       return variant = variants[selection[0]];
     } else {
@@ -204,16 +214,18 @@ function VariantOptions(params) {
       disable($(element).find('a.option-value').show().removeClass('in-stock out-of-stock').addClass('locked').unbind('click'));
       $(element).find('a.clear-button').hide();
     });
-    show_all_variant_images();
+    show_only_product_images();
   }
 
 
   function handle_clear(evt) {
+    console.log('handle click');
     evt.preventDefault();
     clear(get_index(this));
   }
 
   function handle_click(evt) {
+    console.log('handle click');
     evt.preventDefault();
     variant = null;
     selection = [];
