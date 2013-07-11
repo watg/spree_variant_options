@@ -1,5 +1,4 @@
 var show_variant_images = function(variant_id) {
-  console.log('show_variant_images for variant:' + variant_id);
   $('li.vtmb').hide();
   $('li.tmb-all').hide();
   $('li.tmb-' + variant_id).show();
@@ -16,9 +15,11 @@ var show_variant_images = function(variant_id) {
     $('ul.thumbnails li').removeClass('selected');
     thumb.addClass('selected');
     $('#main-image img').attr('src', newImg);
+    $('#main-image a').attr('href', newImg);
     $("#main-image").data('selectedThumb', newImg);
     $("#main-image").data('selectedThumbId', thumb.attr('id'));
   }
+  $("body").trigger("thumbs_updated");
 }
 
 var show_only_product_images = function() {
@@ -31,8 +32,10 @@ var show_only_product_images = function() {
     thumb.addClass('selected');
     // And show it in the main image
     $('#main-image img').attr('src', newImg);
+    $('#main-image a').attr('href', newImg);
     $("#main-image").data('selectedThumb', newImg);
     $("#main-image").data('selectedThumbId', thumb.attr('id'));
+    $("body").trigger("thumbs_updated");
 }
 
 var show_all_variant_images = function() {

@@ -31,6 +31,8 @@ if (!Array.find_matches) Array.find_matches = function(a) {
 }
 
 function VariantOptions(params) {
+    
+
 
   var options = params['options'];
   var allow_backorders = !params['track_inventory_levels'] ||  params['allow_backorders'];
@@ -43,14 +45,14 @@ function VariantOptions(params) {
 
 
   function init() {
-      
+     
     // Hide Variant images first;
     $('li.vtmb').hide();
-    
+    $("body").trigger("thumbs_updated");
+      
     divs = $('#product-variants .variant-options');
     disable(divs.find('a.option-value').addClass('locked'));
     update(); // This function sets parent 
-    console.log(parent);
     enable(parent.find('a.option-value'));
     toggle();
     $('.clear-option a.clear-button').hide().click(handle_clear);
@@ -68,7 +70,6 @@ function VariantOptions(params) {
 
   function update(i) {
     index = isNaN(i) ? index : i;
-    console.log('index ' + index);
     parent = $(divs.get(index));
     buttons = parent.find('a.option-value');
     parent.find('a.clear-button').hide();
@@ -124,8 +125,6 @@ function VariantOptions(params) {
   }
 
   function get_variant_objects(rels) {
-      console.log('get variant objects');
-      console.log(rels);
     var i, ids, obj, variants = {};
     if (typeof(rels) == 'string') { rels = [rels]; }
     var otid, ovid, opt, opv;
@@ -163,8 +162,6 @@ function VariantOptions(params) {
   function find_variant() {
     var selected = divs.find('a.selected');
     var variants = get_variant_objects(selected.get(0).rel);
-    console.log('inside find_variant:');
-    console.log(variants);
     if (selected.length == divs.length) {
       return variant = variants[selection[0]];
     } else {
@@ -219,13 +216,11 @@ function VariantOptions(params) {
 
 
   function handle_clear(evt) {
-    console.log('handle click');
     evt.preventDefault();
     clear(get_index(this));
   }
 
   function handle_click(evt) {
-    console.log('handle click');
     evt.preventDefault();
     variant = null;
     selection = [];
