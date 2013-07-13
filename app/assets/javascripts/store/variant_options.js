@@ -150,7 +150,6 @@ function VariantOptions(params) {
         }
       }
     } catch(error) {
-      //console.log(error);
     }
     return variants;
   }
