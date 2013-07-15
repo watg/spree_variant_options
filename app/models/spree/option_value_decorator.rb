@@ -13,16 +13,13 @@ Spree::OptionValue.class_eval do
 
   include Spree::Core::S3Support
   supports_s3 :image
-  include Spree::Extend::S3Region
-  adapt_s3_region(:image,:europe)
-  
   
   Spree::OptionValue.attachment_definitions[:image][:styles] = ActiveSupport::JSON.decode(Spree::Config[:attachment_styles]).symbolize_keys!
   Spree::OptionValue.attachment_definitions[:image][:path] = Spree::Config[:attachment_path]
   Spree::OptionValue.attachment_definitions[:image][:url] = Spree::Config[:attachment_url]
   Spree::OptionValue.attachment_definitions[:image][:default_url] = Spree::Config[:attachment_default_url]
   Spree::OptionValue.attachment_definitions[:image][:default_style] = Spree::Config[:attachment_default_style]
-
+  Spree::OptionValue.attachment_definitions[:image][:s3_host_name] = "s3-eu-west-1.amazonaws.com"
   
   def has_image?
     image_file_name && !image_file_name.empty?
