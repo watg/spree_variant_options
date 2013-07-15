@@ -13,7 +13,7 @@ Spree::OptionValue.class_eval do
 
   include Spree::Core::S3Support
   supports_s3 :image
-  include Extend::S3Region
+  include Spree::Extend::S3Region
   adapt_s3_region(:image,:europe)
   
   
