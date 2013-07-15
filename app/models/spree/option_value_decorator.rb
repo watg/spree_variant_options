@@ -14,13 +14,13 @@ Spree::OptionValue.class_eval do
   include Spree::Core::S3Support
   supports_s3 :image
   
-  if Rails.env.production? or Rails.env.staging?
-    Spree::Image.attachment_definitions[:image][:styles] = ActiveSupport::JSON.decode(Spree::Config[:attachment_styles]).symbolize_keys!
-    Spree::Image.attachment_definitions[:image][:path] = Spree::Config[:attachment_path]
-    Spree::Image.attachment_definitions[:image][:url] = Spree::Config[:attachment_url]
-    Spree::Image.attachment_definitions[:image][:default_url] = Spree::Config[:attachment_default_url]
-    Spree::Image.attachment_definitions[:image][:default_style] = Spree::Config[:attachment_default_style]
-  end
+  
+  Spree::Image.attachment_definitions[:attachment][:styles] = ActiveSupport::JSON.decode(Spree::Config[:attachment_styles]).symbolize_keys!
+  Spree::Image.attachment_definitions[:attachment][:path] = Spree::Config[:attachment_path]
+  Spree::Image.attachment_definitions[:attachment][:url] = Spree::Config[:attachment_url]
+  Spree::Image.attachment_definitions[:attachment][:default_url] = Spree::Config[:attachment_default_url]
+  Spree::Image.attachment_definitions[:attachment][:default_style] = Spree::Config[:attachment_default_style]
+
   
   def has_image?
     image_file_name && !image_file_name.empty?
