@@ -13,6 +13,8 @@ Spree::OptionValue.class_eval do
 
   include Spree::Core::S3Support
   supports_s3 :image
+  include Extend::S3Region
+  adapt_s3_region(:image,:europe)
   
   
   Spree::OptionValue.attachment_definitions[:image][:styles] = ActiveSupport::JSON.decode(Spree::Config[:attachment_styles]).symbolize_keys!
