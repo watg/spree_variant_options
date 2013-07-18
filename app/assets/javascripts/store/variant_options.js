@@ -30,10 +30,9 @@ if (!Array.find_matches) Array.find_matches = function(a) {
   return m;
 }
 
+
 function VariantOptions(params) {
     
-
-
   var options = params['options'];
   var allow_backorders = !params['track_inventory_levels'] ||  params['allow_backorders'];
   var allow_select_outofstock = params['allow_select_outofstock'];
@@ -42,7 +41,6 @@ function VariantOptions(params) {
   var variant, divs, parent, index = 0;
   var selection = [];
   var buttons;
-
 
   function init() {
      
@@ -62,6 +60,29 @@ function VariantOptions(params) {
         $(this).find("ul.variant-option-values li a.in-stock:first").click();
       });
     }
+
+    preSelectVariants();
+  }
+
+  function preSelectVariants() {
+    var variant_options = getQueryVariable('variant_options'); 
+    variant_options = variant_options.split('_');
+    variant_options.forEach(function(var_op) { 
+      var var_op = ['a[rel=', var_op , ']'].join('');
+      $( var_op ).click();
+    } );
+  }
+
+  function getQueryVariable(variable) { 
+    var query = window.location.search.substring(1); 
+    var vars = query.split("&"); 
+    for (var i = 0; i < vars.length; i++) { 
+      var pair = vars[i].split("="); 
+      if (pair[0] == variable) { 
+        return unescape(pair[1]); 
+      } 
+    } 
+    return false; 
   }
 
   function get_index(parent) {
