@@ -7,8 +7,8 @@ Spree::Variant.class_eval do
   def to_hash(currency)
     # actual_price  = self.price
     #actual_price += Calculator::Vat.calculate_tax_on(self) if Spree::Config[:show_price_inc_vat]
-    actual_price = price_in(currency)
-    
+    #actual_price = price_in(currency)
+    actual_price = current_price_in(currency)
     
     { 
       :id    => self.id, 
